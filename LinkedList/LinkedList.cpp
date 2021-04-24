@@ -181,11 +181,13 @@ void LinkedList::forEach(void (*fn)(ValueType&)) {
 	}
 }
 
-void LinkedList::map(int (*fn)(ValueType)) {
+void LinkedList::map(ValueType (*fn)(ValueType)) {
 	Node* cur = _head;
-	do {
+
+	while(cur) {
 		cur->_value = fn(cur->_value);
-	} while(cur = cur->_next);
+		cur = cur->_next;
+	}
 }
 
 
