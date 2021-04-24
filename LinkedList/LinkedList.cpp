@@ -175,9 +175,10 @@ void LinkedList::print() const {
 
 void LinkedList::forEach(void (*fn)(ValueType&)) {
 	Node* cur = _head;
-	do {
+	while(cur) {
 		fn(cur->_value);
-	} while(cur = cur->_next);
+		cur = cur->_next;
+	}
 }
 
 void LinkedList::map(int (*fn)(ValueType)) {
