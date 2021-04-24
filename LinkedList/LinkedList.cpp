@@ -195,7 +195,7 @@ void LinkedList::filter(bool (*fn)(ValueType)) {
 	Node* cur = _head;
 	Node* prev = nullptr;
 	
-	do {
+	while (cur) {
 		if (!fn(cur->_value)) {
 			if (!prev) { // in head
 				this->removeFront();
@@ -214,7 +214,7 @@ void LinkedList::filter(bool (*fn)(ValueType)) {
 			prev = cur;
 			cur = cur->_next;
 		}
-	} while (cur);
+	}	
 }
 
 void LinkedList::removeFront() {
