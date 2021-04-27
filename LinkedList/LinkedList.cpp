@@ -44,8 +44,6 @@ LinkedList& LinkedList::operator=(const LinkedList& copyList) {
 }
 
 
-//TODO move semantics
-/*
 LinkedList::LinkedList(LinkedList&& moveList) noexcept :
 	_head(nullptr),
 	_size(0)
@@ -61,7 +59,7 @@ LinkedList& LinkedList::operator=(LinkedList&& moveList) noexcept {
 	}
 	return *this;
 }
-*/
+
 
 LinkedList::~LinkedList() {
 	while (_head) {
