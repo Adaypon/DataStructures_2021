@@ -210,11 +210,41 @@ void LinkedList::filter(bool (*fn)(ValueType)) {
 	}	
 }
 
-void LinkedList::removeFront() {
-	Node* tmp = _head;
-	_head = _head->_next;
-	delete tmp;
+
+void LinkedList::remove(const size_t pos) {
+	if (pos >= size()) {
+		throw std::out_of_range("Called at remove(): pos >= size");
+	}
+
+	Node* cur = _head;
+	Node* prev = nullptr;
+	for (size_t i = 0; i < pos; ++i) {
+		if (!prev) { // in head
+			prev = _head;
+		}
+		else {
+			prev = cur;
+		}
+		cur = cur->_next;
+	}
+
+	if (!prev) { // pos == 0
+		_head = _head->_next;
+	}
+	else {
+		prev->_next = cur->_next;
+	}
+	delete cur;
+
 	--_size;
+}
+
+void LinkedList::removeFront() {
+	this->remove(0);
+}
+
+void LinkedList::removeBack() {
+	this->remove(size()-1);
 }
 
 
