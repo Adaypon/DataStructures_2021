@@ -30,7 +30,7 @@ LinkedList::LinkedList(const LinkedList& copyList) {
 			curCopy = curCopy->_next;
 			cur = cur->_next;
 		}
-	}	
+	}
 }
 
 LinkedList& LinkedList::operator=(const LinkedList& copyList) {
@@ -66,8 +66,6 @@ LinkedList::~LinkedList() {
 		this->removeFront();
 	}
 };
-
-
 
 
 const ValueType& LinkedList::at(const size_t pos) const {
@@ -110,54 +108,50 @@ ValueType& LinkedList::operator[](const size_t pos) {
 	return at(pos);
 }
 
-//TODO insert
+
 void LinkedList::insert(const size_t pos, const ValueType& value) {
 	if (pos > size()) {
 		throw std::out_of_range("Called at insert(): pos > size");
 	}
-	Node* node = new Node(value);
 
-	if (!_head) {
-		_head = node;
-	}
-	else {
-		Node* cur = _head;
-		for (size_t i = 0; i < pos && cur; ++i) {
-			cur = cur->_next;
-		}
-		Node* next = cur->_next;
-		cur = node;
-		node->_next = next;
-	}
-}
-
-
-
-
-void LinkedList::pushBack(const ValueType& value) {
 	Node* node = new Node(value);
 	if (!_head) {
 		_head = node;
 	}
 	else {
 		Node* cur = _head;
-		while (cur->_next) {
+		Node* prev = nullptr;
+		for (size_t i = 0; i < pos; ++i) {
+			if (!prev) { // in head
+				prev = _head;
+			}
+			else {
+				prev = cur;
+			}
 			cur = cur->_next;
 		}
-		cur->_next = node;
+
+		if (!prev) { // pos == 0
+			node->_next = cur;
+			_head = node;
+		}
+		else {
+			prev->_next = node;
+			node->_next = cur;
+		}
 	}
 	++_size;
+}
+
+void LinkedList::pushBack(const ValueType& value) {
+	this->insert(size(), value);
 }
 
 
 void LinkedList::pushFront(const ValueType& value) {
-	Node* node = new Node(value);
-	if (_head) {
-		node->_next = _head;
-	}
-	_head = node;
-	++_size;
+	this->insert(0, value);
 }
+
 
 void LinkedList::print() const {
 	if (!_head) {
@@ -178,6 +172,7 @@ void LinkedList::forEach(void (*fn)(ValueType&)) {
 		cur = cur->_next;
 	}
 }
+
 
 void LinkedList::map(ValueType (*fn)(ValueType)) {
 	Node* cur = _head;
@@ -221,7 +216,6 @@ void LinkedList::removeFront() {
 	delete tmp;
 	--_size;
 }
-
 
 
 void LinkedList::reverse() {

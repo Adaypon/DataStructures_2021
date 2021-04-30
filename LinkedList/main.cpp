@@ -7,7 +7,14 @@ int main() {
     list.pushBack(1);
 	list.pushBack(2);
 	list.pushBack(3);
-	list.insert(1, 4);
+	list.print();
+	try	{
+		list.insert(0, 9);
+	}
+	catch(std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+
 	std::cout << list.size() << std::endl;
 	list.print();
 	/*
