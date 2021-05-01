@@ -126,6 +126,14 @@ MyVector::MyVector(size_t size, ResizeStrategy strategy, size_t coef) :
 	_data(nullptr)
 {
 	if (_size > 0) {
+		switch (_strategy) {
+			case ResizeStrategy::Additive:
+				_capacity += _resizeCoef;
+				break;
+			case ResizeStrategy::Multiplicative:
+				_capacity *= _resizeCoef;
+				break;
+		}
 		_data = new ValueType[_capacity];
 		for (size_t i = 0; i < _size; ++i) {
             _data[i] = ValueType();
@@ -141,6 +149,14 @@ MyVector::MyVector(size_t size, ValueType value, ResizeStrategy strategy, size_t
 	_data(nullptr)
 {
 	if (_size > 0) {
+		switch (_strategy) {
+			case ResizeStrategy::Additive:
+				_capacity += _resizeCoef;
+				break;
+			case ResizeStrategy::Multiplicative:
+				_capacity *= _resizeCoef;
+				break;
+		}
 		_data = new ValueType[_capacity];
 		for (size_t i = 0; i < _size; ++i) {
             _data[i] = value;
@@ -290,7 +306,6 @@ void MyVector::insert(const size_t idx, const ValueType& value) {
 	if (isLoaded()) {
 		reallocVector();
 	}
-	std::cout << "\tsize = " << size() << " capacity = " << capacity() << std::endl;
 
 	ValueType* tmpVector = new ValueType[_capacity];
 
