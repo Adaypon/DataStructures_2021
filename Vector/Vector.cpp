@@ -200,6 +200,21 @@ MyVector::~MyVector() {
 	_resizeCoef = 0;
 }
 
+MyVector::VectorIterator MyVector::begin() {
+	return MyVector::VectorIterator(&_data[0], 0);
+}
+
+MyVector::ConstVectorIterator MyVector::begin() const {
+	return MyVector::ConstVectorIterator(&_data[0]);
+}
+
+MyVector::VectorIterator MyVector::end() {
+	return MyVector::VectorIterator(&_data[size()], size());
+}
+
+MyVector::ConstVectorIterator MyVector::end() const {
+	return MyVector::ConstVectorIterator(&_data[size()]);
+}
 
 ValueType& MyVector::at(const size_t idx) {
 	if (idx >= size()) {
