@@ -298,6 +298,12 @@ LinkedList LinkedList::getReverseList() const {
 	return reversedList;
 }
 
+LinkedList LinkedList::getReverseList(const unsigned int start, const unsigned int end) const {
+	LinkedList reversedList = *this;
+	reversedList.reverseSubList(start, end);
+	return reversedList;
+}
+
 
 size_t LinkedList::size() const {
 	return _size;
