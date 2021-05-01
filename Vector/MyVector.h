@@ -64,8 +64,6 @@ public:
         bool operator==(const ConstVectorIterator& other);
         bool operator!=(const ConstVectorIterator& other);
         std::ptrdiff_t operator-(const ConstVectorIterator& other);
-
-        size_t getIndex() const;
     private:
         ValueType* _ptr;
     };
