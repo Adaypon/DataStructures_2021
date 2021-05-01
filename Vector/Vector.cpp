@@ -278,7 +278,17 @@ void MyVector::reserve(const size_t capacity) {
 	_capacity = capacity;
 }
 
-
+void MyVector::resize(const size_t size, const ValueType& value) {
+	if (size > _size) {
+		while (size > _capacity) {
+        	reallocVector();
+		}
+        for (size_t i = _size; i < size; ++i) {
+            _data[i] = value;
+        }
+    }
+	_size = size;
+}
 
 void MyVector::reallocVector() {
 	std::cout << "\tdebug: Reallocating vector" << std::endl;
