@@ -77,10 +77,11 @@ public:
 
 	// разворот списка
 	void reverse();						// изменение текущего списка
-	LinkedList reverse() const;			// полчение нового списка (для константных объектов)
+	void reverseSubList(const unsigned int start, const unsigned int end); // изменение списка с позиции start по end
 	LinkedList getReverseList() const;	// чтобы неконстантный объект тоже мог возвращать новый развернутый список
+	LinkedList getReverseList(const unsigned int start, const unsigned int end) const;
 
-	void reverseSubList(const unsigned int start, const unsigned int end);
+	
 
 	size_t size() const;
 private:
