@@ -374,6 +374,10 @@ size_t MyVector::capacity() const {
 float MyVector::loadFactor() const {
 	return (static_cast<float>(size()) / capacity());
 }
+
+bool MyVector::isLoaded() const {
+	return (loadFactor() <= MIN_LOAD || loadFactor() >= MAX_LOAD);
+}
 /*
 size_t MyVector::find(const ValueType& value) const {
 	size_t res = -1;

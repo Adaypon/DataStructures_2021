@@ -88,6 +88,7 @@ public:
     size_t capacity() const;
     size_t size() const;
     float loadFactor() const;
+    bool isLoaded() const;
     
     VectorIterator begin();
     ConstVectorIterator begin() const;
