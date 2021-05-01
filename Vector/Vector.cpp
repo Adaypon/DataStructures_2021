@@ -331,23 +331,15 @@ void MyVector::clear() {
 	_resizeCoef = 0;
 }
 
-void MyVector::erase(size_t pos) {
-	if (pos >= size()) {
-		throw std::out_of_range("Called at erase(): pos >= size");
+void MyVector::popBack() {
+	if (size() == 0) {
+		throw std::out_of_range("Called at popBack(): Vector is empty");
 	}
-	
-	size_t tmpSize = _size - 1;
-	ValueType* tmpVector = new ValueType[_capacity];
+	this->erase(size()-1);
+}
 
-	for (size_t i = 0; i < pos; ++i) {
-		tmpVector[i] = _data[i];
-	}
-	for (size_t i = pos; i < tmpSize; ++i) {
-		tmpVector[i] = _data[i+1];
-	}
-	delete[] _data;
-	_data = tmpVector;
-	_size = tmpSize;
+void MyVector::erase(size_t pos) {
+	this->erase(pos, 1);
 }
 
 void MyVector::erase(size_t pos, size_t len) {
@@ -374,12 +366,6 @@ void MyVector::erase(size_t pos, size_t len) {
 	_size = tmpSize;
 }
 
-void MyVector::popBack() {
-	if (size() == 0) {
-		throw std::out_of_range("Called at popBack(): Vector is empty");
-	}
-	this->erase(size()-1);
-}
 
 size_t MyVector::size() const {
 	return _size;

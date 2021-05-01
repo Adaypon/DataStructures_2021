@@ -1,14 +1,17 @@
 #include "MyVector.h"
 
 int main() {
-	MyVector a(1, 12);
+	MyVector a;
+	for (int i = 0; i < 5; ++i) {
+		a.pushBack(i);
+	}
 	for (int i = 0; i < a.size(); ++i) {
 		std::cout << a[i] << " ";
 	}
 	std::cout << std::endl;
 	std::cout << "size = " << a.size() << " capacity = " << a.capacity() << std::endl;
 
-	a.pushBack(1);
+	a.erase(1, 2);
 	for (int i = 0; i < a.size(); ++i) {
 		std::cout << a[i] << " ";
 	}
