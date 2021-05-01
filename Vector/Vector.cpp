@@ -1,5 +1,120 @@
 #include "MyVector.h"
 
+/// Iterators section
+
+// VectorIterator
+
+MyVector::VectorIterator::VectorIterator(ValueType *ptr, size_t idx) :
+	_ptr(ptr),
+	_index(idx)
+{
+
+}
+
+MyVector::VectorIterator::VectorIterator(const MyVector::VectorIterator& copy) :
+	_ptr(copy._ptr),
+	_index(copy._index)
+{
+
+}
+
+MyVector::VectorIterator& MyVector::VectorIterator::operator=(const MyVector::VectorIterator& copy) {
+	if (this != &copy) {
+		_ptr = copy._ptr;
+		_index = copy._index;
+	}
+	return *this;
+}
+
+ValueType& MyVector::VectorIterator::operator*() {
+	return *(_ptr);
+}
+ValueType* MyVector::VectorIterator::operator->() {
+	return _ptr;
+}
+
+MyVector::VectorIterator& MyVector::VectorIterator::operator++() {
+	++_ptr;
+	++_index;
+	return *this;
+}
+
+MyVector::VectorIterator MyVector::VectorIterator::operator++(int _) {
+	VectorIterator tmp = *this;
+	++(*this);
+	return tmp;
+}
+
+bool MyVector::VectorIterator::operator==(const MyVector::VectorIterator& other) {
+	return _ptr == other._ptr;
+}
+
+bool MyVector::VectorIterator::operator!=(const MyVector::VectorIterator& other) {
+	return !(*this == other);
+}
+
+std::ptrdiff_t MyVector::VectorIterator::operator-(const MyVector::VectorIterator& other) {
+	return _ptr - other._ptr;
+}
+
+size_t MyVector::VectorIterator::getIndex() const {
+	return _index;
+}
+
+// ConstVectorIterator
+
+MyVector::ConstVectorIterator::ConstVectorIterator(ValueType *ptr) :
+	_ptr(ptr)
+{
+
+}
+
+MyVector::ConstVectorIterator::ConstVectorIterator(const MyVector::ConstVectorIterator& copy) :
+	_ptr(copy._ptr)
+{
+
+}
+
+MyVector::ConstVectorIterator& MyVector::ConstVectorIterator::operator=(const MyVector::ConstVectorIterator& copy) {
+	if (this != &copy) {
+		_ptr = copy._ptr;
+	}
+	return *this;
+}
+
+ValueType& MyVector::ConstVectorIterator::operator*() {
+	return *(_ptr);
+}
+
+ValueType* MyVector::ConstVectorIterator::operator->() {
+	return _ptr;
+}
+
+MyVector::ConstVectorIterator& MyVector::ConstVectorIterator::operator++() {
+	++_ptr;
+	return *this;
+}
+
+MyVector::ConstVectorIterator MyVector::ConstVectorIterator::operator++(int _) {
+	ConstVectorIterator tmp = *this;
+	++(*this);
+	return tmp;
+}
+
+bool MyVector::ConstVectorIterator::operator==(const MyVector::ConstVectorIterator& other) {
+	return _ptr == other._ptr;
+}
+
+bool MyVector::ConstVectorIterator::operator!=(const MyVector::ConstVectorIterator& other) {
+	return !(*this == other);
+}
+
+std::ptrdiff_t MyVector::ConstVectorIterator::operator-(const MyVector::ConstVectorIterator& other) {
+	return _ptr - other._ptr;
+}
+
+///
+
 MyVector::MyVector(size_t size, ResizeStrategy strategy, float coef) : 
 	_size(size),
 	_capacity(size),
