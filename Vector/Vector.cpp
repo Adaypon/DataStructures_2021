@@ -274,15 +274,28 @@ const ValueType& MyVector::operator[](const size_t i) const {
 }
 
 
+void MyVector::resize(const size_t size, const ValueType& value) {
+	size_t oldSize = this->size();
+	_size = size;
+	if (isLoaded()) {
+		reallocVector();
+	}
+	for (int i = oldSize; i < _size; ++i) {
+		_data[i] = value;
+	}
+}
+
 void MyVector::reallocVector() {
 	std::cout << "\tReallocating vector" << std::endl;
-	switch (_strategy) {
-		case ResizeStrategy::Additive:
-			_capacity += _resizeCoef;
-			break;
-		case ResizeStrategy::Multiplicative:
-			_capacity *= _resizeCoef;
-			break;
+	while (isLoaded()) {
+		switch (_strategy) {
+			case ResizeStrategy::Additive:
+				_capacity += _resizeCoef;
+				break;
+			case ResizeStrategy::Multiplicative:
+				_capacity *= _resizeCoef;
+				break;
+		}
 	}
 	ValueType* tmpVector = new ValueType[capacity()];
 	for (size_t i = 0; i < size(); ++i) {
