@@ -337,7 +337,7 @@ void MyVector::erase(size_t pos) {
 	
 	size_t tmpSize = _size - 1;
 	ValueType* tmpVector = new ValueType[_capacity];
-	
+
 	for (size_t i = 0; i < pos; ++i) {
 		tmpVector[i] = _data[i];
 	}
@@ -359,7 +359,7 @@ void MyVector::erase(size_t pos, size_t len) {
 	}
 
 	size_t tmpSize = _size - len;
-	ValueType* tmpVector = new ValueType[tmpSize];
+	ValueType* tmpVector = new ValueType[_capacity];
 	
 	for (size_t i = 0; i < pos; ++i) {
 		tmpVector[i] = _data[i];
