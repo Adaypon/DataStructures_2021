@@ -125,7 +125,7 @@ MyVector::MyVector(size_t size, ResizeStrategy strategy, float coef) :
 	if (_size > 0) {
 		_data = new ValueType[_capacity];
 		for (size_t i = 0; i < _size; ++i) {
-            _data[i] = 0;
+            _data[i] = ValueType();
         }
 	}
 }
