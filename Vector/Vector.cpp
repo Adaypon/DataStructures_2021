@@ -287,7 +287,7 @@ void MyVector::insert(const size_t idx, const ValueType& value) {
 	}
 
 	++_size;
-	if (loadFactor() <= MIN_LOAD || loadFactor() >= MAX_LOAD) {
+	if (isLoaded()) {
 		reallocVector();
 	}
 	std::cout << "\tsize = " << size() << " capacity = " << capacity() << std::endl;
