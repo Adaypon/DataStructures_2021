@@ -196,6 +196,8 @@ MyVector::~MyVector() {
 	delete[] _data;
 	_data = nullptr;
     _size = 0;
+	_capacity = 0;
+	_resizeCoef = 0;
 }
 
 
