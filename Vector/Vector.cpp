@@ -278,6 +278,7 @@ void MyVector::reserve(const size_t capacity) {
 	_capacity = capacity;
 }
 
+// TODO try to fix (works unstable, still idk why)
 void MyVector::resize(const size_t size, const ValueType& value) {
 	if (size > _size) {
 		while (size > _capacity) {
