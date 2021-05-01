@@ -242,6 +242,24 @@ const ValueType& MyVector::operator[](const size_t i) const {
 }
 
 
+void MyVector::reallocVector() {
+	switch (_strategy) {
+		case ResizeStrategy::Additive:
+			_capacity += _resizeCoef;
+			break;
+		case ResizeStrategy::Multiplicative:
+			_capacity *= _resizeCoef;
+			break;
+	}
+	ValueType* tmpVector = new ValueType[capacity()];
+	for (size_t i = 0; i < size(); ++i) {
+		tmpVector[i] = _data[i];
+	}
+	delete[] _data;
+	_data = tmpVector;
+}
+
+
 void MyVector::pushBack(const ValueType& value) {
 	this->insert(value, size());
 }

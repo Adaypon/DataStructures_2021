@@ -132,6 +132,9 @@ public:
     // если новый размер больше текущего, то новые элементы забиваются value
     // если меньше - обрезаем вектор
     void resize(const size_t size, const ValueType& value = ValueType());
+
+    // реаллокация вектора в случае, если loadFactor превысит максимальное значение
+    void reallocVector();
     
     // очистка вектора, без изменения capacity
     void clear();
