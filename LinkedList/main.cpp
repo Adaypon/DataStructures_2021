@@ -12,8 +12,9 @@ int main() {
 	std::cout << list.size() << std::endl;
 	list.print();
 
-	list.reverseSubList(1, 3);
-	list.print();
+
+	LinkedList l2 = list.getReverseList();
+	l2.print();
 
 	return 0;	
 }

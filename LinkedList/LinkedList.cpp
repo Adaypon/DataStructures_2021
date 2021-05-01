@@ -254,21 +254,6 @@ void LinkedList::removeBack() {
 //TODO findIndex
 //TODO findNode
 
-/*
-void LinkedList::reverse() {
-	Node* cur = _head;
-	Node* prev = nullptr;
-	Node* next = nullptr;
-
-	while (cur) {
-		next = cur->_next;
-		cur->_next = prev; //swap pointer to prev node
-		prev = cur;
-		cur = next; // moving to the next node
-	}
-	_head = prev; // set new movement
-}
-*/
 
 void LinkedList::reverse() {
 	this->reverseSubList(0, size()-1);
@@ -278,7 +263,7 @@ void LinkedList::reverseSubList(const unsigned int start, const unsigned int end
 	if (start >= end) {
 		return;
 	}
-		
+
 	Node* cur = _head;
 	Node* prev = nullptr;
 	Node* next = nullptr;
@@ -307,9 +292,11 @@ void LinkedList::reverseSubList(const unsigned int start, const unsigned int end
 	}
 }
 
-
-//TODO reverse() const
-//TODO getReverseList()
+LinkedList LinkedList::getReverseList() const {
+	LinkedList reversedList = *this;
+	reversedList.reverse();
+	return reversedList;
+}
 
 
 size_t LinkedList::size() const {
