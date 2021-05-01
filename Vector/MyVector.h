@@ -106,8 +106,8 @@ public:
     void pushBack(const ValueType& value);
     // вставить,
     // должен работать за O(n)
-    void insert(const size_t i, const ValueType& value);     // версия для одного значения
-    void insert(const size_t i, const MyVector& value);      // версия для вектора
+    void insert(const size_t idx, const ValueType& value);     // версия для одного значения
+    void insert(const size_t idx, const MyVector& value);      // версия для вектора
     void insert(ConstVectorIterator it, const ValueType& value);  // версия для одного значения
     void insert(ConstVectorIterator it, const MyVector& value);   // версия для вектора
     

@@ -258,6 +258,7 @@ const ValueType& MyVector::operator[](const size_t i) const {
 
 
 void MyVector::reallocVector() {
+	std::cout << "\tReallocating vector" << std::endl;
 	switch (_strategy) {
 		case ResizeStrategy::Additive:
 			_capacity += _resizeCoef;
@@ -276,30 +277,35 @@ void MyVector::reallocVector() {
 
 
 void MyVector::pushBack(const ValueType& value) {
-	this->insert(value, size());
+	this->insert(size(), value);
 }
-/*
-void MyVector::insert(const ValueType& value, size_t idx) {
+
+
+void MyVector::insert(const size_t idx, const ValueType& value) {
 	if (idx > size()) {
 		throw std::out_of_range("Called at insert(): idx > size");
 	}
-	
-	size_t tmpSize = _size + 1;
-	ValueType* tmpVector = new ValueType[tmpSize];
-	
+
+	++_size;
+	if (loadFactor() <= MIN_LOAD || loadFactor() >= MAX_LOAD) {
+		reallocVector();
+	}
+	std::cout << "\tsize = " << size() << " capacity = " << capacity() << std::endl;
+
+	ValueType* tmpVector = new ValueType[_capacity];
+
 	for (size_t i = 0; i < idx; ++i) {
 		tmpVector[i] = _data[i];
 	}
 	tmpVector[idx] = value;
-	for (size_t i = idx+1; i < tmpSize; ++i) {
+	for (size_t i = idx + 1; i < size(); ++i) {
 		tmpVector[i] = _data[i-1];
 	}
 
 	delete[] _data;
 	_data = tmpVector;
-	_size = tmpSize;
 }
-*/
+
 void MyVector::clear() {
 	//this->erase(0, size());
 	delete[] _data;
