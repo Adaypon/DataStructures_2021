@@ -2,6 +2,7 @@
 
 const float MyVector::MAX_LOAD = 1;
 const float MyVector::MIN_LOAD = 0.25;
+const size_t MyVector::CAPACITY_INIT = 20; // для инициализации _capacity при _size == 0
 
 /// Iterators section
 
@@ -120,7 +121,7 @@ std::ptrdiff_t MyVector::ConstVectorIterator::operator-(const MyVector::ConstVec
 
 MyVector::MyVector(size_t size, ResizeStrategy strategy, size_t coef) : 
 	_size(size),
-	_capacity(size),
+	_capacity(CAPACITY_INIT),
 	_strategy(strategy),
 	_resizeCoef(coef),
 	_data(nullptr)
@@ -128,22 +129,22 @@ MyVector::MyVector(size_t size, ResizeStrategy strategy, size_t coef) :
 	if (_size > 0) {
 		switch (_strategy) {
 			case ResizeStrategy::Additive:
-				_capacity += _resizeCoef;
+				_capacity = _size + _resizeCoef;
 				break;
 			case ResizeStrategy::Multiplicative:
-				_capacity *= _resizeCoef;
+				_capacity = _size * _resizeCoef;
 				break;
 		}
-		_data = new ValueType[_capacity];
-		for (size_t i = 0; i < _size; ++i) {
-            _data[i] = ValueType();
-        }
 	}
+	_data = new ValueType[_capacity];
+	for (size_t i = 0; i < _size; ++i) {
+        _data[i] = ValueType();
+    }
 }
 
 MyVector::MyVector(size_t size, ValueType value, ResizeStrategy strategy, size_t coef) :
 	_size(size),
-	_capacity(size),
+	_capacity(CAPACITY_INIT),
 	_strategy(strategy),
 	_resizeCoef(coef),
 	_data(nullptr)
@@ -151,16 +152,16 @@ MyVector::MyVector(size_t size, ValueType value, ResizeStrategy strategy, size_t
 	if (_size > 0) {
 		switch (_strategy) {
 			case ResizeStrategy::Additive:
-				_capacity += _resizeCoef;
+				_capacity = _size + _resizeCoef;
 				break;
 			case ResizeStrategy::Multiplicative:
-				_capacity *= _resizeCoef;
+				_capacity = _size * _resizeCoef;
 				break;
 		}
-		_data = new ValueType[_capacity];
-		for (size_t i = 0; i < _size; ++i) {
-            _data[i] = value;
-        }
+	}
+	_data = new ValueType[_capacity];
+	for (size_t i = 0; i < _size; ++i) {
+        _data[i] = value;
 	}
 }
 

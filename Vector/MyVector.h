@@ -147,5 +147,6 @@ private:
     float _resizeCoef;
 
     static const float MAX_LOAD;
-    static const float MIN_LOAD; 
+    static const float MIN_LOAD;
+    static const size_t CAPACITY_INIT;
 };
