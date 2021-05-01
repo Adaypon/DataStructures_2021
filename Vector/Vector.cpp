@@ -1,7 +1,10 @@
-#include "Vector.h"
+#include "MyVector.h"
 
-Vector::Vector(const size_t size) : 
+MyVector::MyVector(size_t size, ResizeStrategy strategy, float coef) : 
 	_size(size),
+	_capacity(size),
+	_strategy(strategy),
+	_resizeCoef(coef),
 	_data(nullptr)
 {
 	if (_size > 0) {
@@ -12,8 +15,11 @@ Vector::Vector(const size_t size) :
 	}
 }
 
-Vector::Vector(const Vector& other) : 
+MyVector::MyVector(const MyVector& other) : 
 	_size(other._size),
+	_capacity(other._size),
+	_strategy(other._strategy),
+	_resizeCoef(other._resizeCoef),
 	_data(nullptr)
 {
 	if (_size > 0) {
@@ -24,16 +30,19 @@ Vector::Vector(const Vector& other) :
 	}
 }
 
-Vector::Vector(Vector&& other) noexcept :
+MyVector::MyVector(MyVector&& other) noexcept :
 	_size(other._size),
+	_capacity(other._size),
+	_strategy(other._strategy),
+	_resizeCoef(other._resizeCoef),
     _data(other._data)
 {
-	other._data = nullptr; 
+	other._data = nullptr;
     other._size = 0;
 }
 
 
-Vector& Vector::operator=(const Vector& other) {
+MyVector& MyVector::operator=(const MyVector& other) {
 	if (this != &other) {
 		if (_data) {
 			delete[] _data;
@@ -47,7 +56,7 @@ Vector& Vector::operator=(const Vector& other) {
     return *this;
 }
 
-Vector& Vector::operator=(Vector&& other) noexcept {
+MyVector& MyVector::operator=(MyVector&& other) noexcept {
 	if (this != &other) {
 		if (_data) {
 			delete[] _data;
@@ -60,13 +69,13 @@ Vector& Vector::operator=(Vector&& other) noexcept {
 	return *this;
 }
 
-Vector::~Vector() {
+MyVector::~MyVector() {
 	delete[] _data;
 	_data = nullptr;
     _size = 0;
 }
-
-ValueType& Vector::at(const size_t idx) {
+/*
+ValueType& MyVector::at(const size_t idx) {
 	if (idx < size()) {
 		return _data[idx];
 	}
@@ -74,30 +83,29 @@ ValueType& Vector::at(const size_t idx) {
 }
 
 
-const ValueType& Vector::at(const size_t idx) const {
+const ValueType& MyVector::at(const size_t idx) const {
 	if (idx < size()) {
 		return _data[idx];
 	}
 	throw std::out_of_range("idx >= size");
 }
+*/
 
-ValueType& Vector::operator[](const size_t i) {
+/*
+ValueType& MyVector::operator[](const size_t i) {
 	return at(i);
 }
 
-const ValueType& Vector::operator[](const size_t i) const {
+const ValueType& MyVector::operator[](const size_t i) const {
 	return at(i);
 }
+*/
 
-void Vector::pushBack(const ValueType& value) {
+void MyVector::pushBack(const ValueType& value) {
 	this->insert(value, size());
 }
-
-void Vector::pushFront(const ValueType& value) {
-	this->insert(value, 0);
-}
-
-void Vector::insert(const ValueType& value, size_t idx) {
+/*
+void MyVector::insert(const ValueType& value, size_t idx) {
 	if (idx > size()) {
 		throw std::out_of_range("Called at insert(): idx > size");
 	}
@@ -117,15 +125,15 @@ void Vector::insert(const ValueType& value, size_t idx) {
 	_data = tmpVector;
 	_size = tmpSize;
 }
-
-void Vector::clear() {
+*/
+void MyVector::clear() {
 	//this->erase(0, size());
 	delete[] _data;
     _data = nullptr;
     _size = 0;
 }
 
-void Vector::erase(size_t pos) {
+void MyVector::erase(size_t pos) {
 	if (pos >= size()) {
 		throw std::out_of_range("Called at erase(): pos >= size");
 	}
@@ -144,7 +152,7 @@ void Vector::erase(size_t pos) {
 	_size = tmpSize;
 }
 
-void Vector::erase(size_t pos, size_t len) {
+void MyVector::erase(size_t pos, size_t len) {
 	if (pos >= size()) {
 		throw std::out_of_range("Called at erase(): pos >= size");
 	}
@@ -168,18 +176,18 @@ void Vector::erase(size_t pos, size_t len) {
 	_size = tmpSize;
 }
 
-void Vector::popBack() {
+void MyVector::popBack() {
 	if (size() == 0) {
 		throw std::out_of_range("Called at popBack(): Vector is empty");
 	}
 	this->erase(size()-1);
 }
 
-size_t Vector::size() const {
+size_t MyVector::size() const {
 	return _size;
 }
-
-size_t Vector::find(const ValueType& value) const {
+/*
+size_t MyVector::find(const ValueType& value) const {
 	size_t res = -1;
 	for (size_t i = 0; i < size(); ++i) {
 		if (this->at(i) == value) {
@@ -189,3 +197,4 @@ size_t Vector::find(const ValueType& value) const {
 	}
 	return res;
 }
+*/
