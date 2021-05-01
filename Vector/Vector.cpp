@@ -197,24 +197,22 @@ MyVector::~MyVector() {
 	_data = nullptr;
     _size = 0;
 }
-/*
-ValueType& MyVector::at(const size_t idx) {
-	if (idx < size()) {
-		return _data[idx];
-	}
-	throw std::out_of_range("idx >= size");
-}
 
+
+ValueType& MyVector::at(const size_t idx) {
+	if (idx >= size()) {
+		throw std::out_of_range("Called at at(): idx >= size");
+	}
+	return _data[idx];
+}
 
 const ValueType& MyVector::at(const size_t idx) const {
-	if (idx < size()) {
-		return _data[idx];
+	if (idx >= size()) {
+		throw std::out_of_range("Called at at(): idx >= size");
 	}
-	throw std::out_of_range("idx >= size");
+	return _data[idx];
 }
-*/
 
-/*
 ValueType& MyVector::operator[](const size_t i) {
 	return at(i);
 }
@@ -222,7 +220,7 @@ ValueType& MyVector::operator[](const size_t i) {
 const ValueType& MyVector::operator[](const size_t i) const {
 	return at(i);
 }
-*/
+
 
 void MyVector::pushBack(const ValueType& value) {
 	this->insert(value, size());

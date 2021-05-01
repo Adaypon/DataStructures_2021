@@ -96,6 +96,8 @@ public:
 
     // доступ к элементу, 
     // должен работать за O(1)
+    ValueType& at(const size_t idx);
+	const ValueType& at(const size_t idx) const;
     ValueType& operator[](const size_t i);
     const ValueType& operator[](const size_t i) const;
     
