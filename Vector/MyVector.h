@@ -141,4 +141,6 @@ private:
     size_t _capacity;
     ResizeStrategy _strategy;
     float _resizeCoef;
+    
+    static const float MAX_LOAD;
 };

@@ -1,5 +1,7 @@
 #include "MyVector.h"
 
+const float MyVector::MAX_LOAD = 0.75;
+
 /// Iterators section
 
 // VectorIterator
