@@ -391,7 +391,7 @@ float MyVector::loadFactor() const {
 }
 
 bool MyVector::isLoaded() const {
-	return (loadFactor() <= MIN_LOAD || loadFactor() >= MAX_LOAD);
+	return (loadFactor() >= MAX_LOAD);
 }
 /*
 size_t MyVector::find(const ValueType& value) const {
