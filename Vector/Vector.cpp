@@ -1,6 +1,7 @@
 #include "MyVector.h"
 
-const float MyVector::MAX_LOAD = 0.75;
+const float MyVector::MAX_LOAD = 1;
+const float MyVector::MIN_LOAD = 0.25;
 
 /// Iterators section
 
