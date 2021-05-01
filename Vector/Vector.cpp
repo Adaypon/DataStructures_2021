@@ -133,6 +133,21 @@ MyVector::MyVector(size_t size, ResizeStrategy strategy, size_t coef) :
 	}
 }
 
+MyVector::MyVector(size_t size, ValueType value, ResizeStrategy strategy, size_t coef) :
+	_size(size),
+	_capacity(size),
+	_strategy(strategy),
+	_resizeCoef(coef),
+	_data(nullptr)
+{
+	if (_size > 0) {
+		_data = new ValueType[_capacity];
+		for (size_t i = 0; i < _size; ++i) {
+            _data[i] = value;
+        }
+	}
+}
+
 MyVector::MyVector(const MyVector& other) : 
 	_size(other._size),
 	_capacity(other._capacity),
