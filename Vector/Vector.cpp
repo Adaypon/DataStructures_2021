@@ -307,6 +307,10 @@ void MyVector::popBack() {
 size_t MyVector::size() const {
 	return _size;
 }
+
+size_t MyVector::capacity() const {
+	return _capacity;
+}
 /*
 size_t MyVector::find(const ValueType& value) const {
 	size_t res = -1;
