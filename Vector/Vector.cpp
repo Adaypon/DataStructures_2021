@@ -311,6 +311,10 @@ size_t MyVector::size() const {
 size_t MyVector::capacity() const {
 	return _capacity;
 }
+
+float MyVector::loadFactor() const {
+	return (static_cast<float>(size()) / capacity());
+}
 /*
 size_t MyVector::find(const ValueType& value) const {
 	size_t res = -1;
