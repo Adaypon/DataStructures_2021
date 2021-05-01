@@ -117,7 +117,7 @@ std::ptrdiff_t MyVector::ConstVectorIterator::operator-(const MyVector::ConstVec
 
 ///
 
-MyVector::MyVector(size_t size, ResizeStrategy strategy, float coef) : 
+MyVector::MyVector(size_t size, ResizeStrategy strategy, size_t coef) : 
 	_size(size),
 	_capacity(size),
 	_strategy(strategy),

@@ -71,12 +71,12 @@ public:
     // заполнить вектор значениями ValueType()
     MyVector(size_t size = 0, 
              ResizeStrategy = ResizeStrategy::Multiplicative, 
-             float coef = 1.5f);
+             size_t coef = 2); // почему тут было float coef = 1.5f ?
     // заполнить вектор значениями value
     MyVector(size_t size, 
              ValueType value, 
              ResizeStrategy = ResizeStrategy::Multiplicative, 
-             float coef = 1.5f);
+             size_t coef = 2); // почему тут было float coef = 1.5f ?
     
     MyVector(const MyVector& copy);
     MyVector& operator=(const MyVector& copy);
@@ -141,6 +141,6 @@ private:
     size_t _capacity;
     ResizeStrategy _strategy;
     float _resizeCoef;
-    
+
     static const float MAX_LOAD;
 };
