@@ -327,8 +327,6 @@ void MyVector::clear() {
 	delete[] _data;
     _data = nullptr;
     _size = 0;
-	_capacity = 0;
-	_resizeCoef = 0;
 }
 
 void MyVector::popBack() {

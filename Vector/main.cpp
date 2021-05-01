@@ -11,7 +11,8 @@ int main() {
 	std::cout << std::endl;
 	std::cout << "size = " << a.size() << " capacity = " << a.capacity() << std::endl;
 
-	a.erase(1, 2);
+	a.clear();
+	a.pushBack(2);
 	for (int i = 0; i < a.size(); ++i) {
 		std::cout << a[i] << " ";
 	}
