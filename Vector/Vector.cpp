@@ -123,7 +123,7 @@ MyVector::MyVector(size_t size, ResizeStrategy strategy, float coef) :
 	_data(nullptr)
 {
 	if (_size > 0) {
-		_data = new ValueType[_size];
+		_data = new ValueType[_capacity];
 		for (size_t i = 0; i < _size; ++i) {
             _data[i] = 0;
         }
@@ -132,13 +132,13 @@ MyVector::MyVector(size_t size, ResizeStrategy strategy, float coef) :
 
 MyVector::MyVector(const MyVector& other) : 
 	_size(other._size),
-	_capacity(other._size),
+	_capacity(other._capacity),
 	_strategy(other._strategy),
 	_resizeCoef(other._resizeCoef),
 	_data(nullptr)
 {
 	if (_size > 0) {
-		_data = new ValueType[_size];
+		_data = new ValueType[_capacity];
 		for (size_t i = 0; i < size(); ++i) {
 			_data[i] = other[i];
 		}
@@ -147,13 +147,15 @@ MyVector::MyVector(const MyVector& other) :
 
 MyVector::MyVector(MyVector&& other) noexcept :
 	_size(other._size),
-	_capacity(other._size),
+	_capacity(other._capacity),
 	_strategy(other._strategy),
 	_resizeCoef(other._resizeCoef),
     _data(other._data)
 {
 	other._data = nullptr;
     other._size = 0;
+	other._capacity = 0;
+	other._resizeCoef = 0;
 }
 
 
@@ -163,7 +165,9 @@ MyVector& MyVector::operator=(const MyVector& other) {
 			delete[] _data;
 		}
 		_size = other._size;
-		_data = new ValueType[_size];
+		_capacity = other._capacity;
+		_resizeCoef = other._resizeCoef;
+		_data = new ValueType[_capacity];
 		for (size_t i = 0; i < size(); ++i) {
 				_data[i] = other[i];
 		}
@@ -177,9 +181,13 @@ MyVector& MyVector::operator=(MyVector&& other) noexcept {
 			delete[] _data;
 		}
 		_size = other._size;
+		_capacity = other._capacity;
+		_resizeCoef = other._resizeCoef;
 		_data = other._data;
 		other._data = nullptr;
 	    other._size = 0;
+		other._capacity = 0;
+		other._resizeCoef = 0;
 	}
 	return *this;
 }
