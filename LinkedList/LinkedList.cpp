@@ -153,6 +153,9 @@ void LinkedList::pushFront(const ValueType& value) {
 }
 
 
+//TODO insertAfterNode() ????
+
+
 void LinkedList::print() const {
 	if (!_head) {
 		std::cout << "(nullptr)" << std::endl;
@@ -248,6 +251,10 @@ void LinkedList::removeBack() {
 }
 
 
+//TODO findIndex
+//TODO findNode
+
+
 void LinkedList::reverse() {
 	Node* cur = _head;
 	Node* prev = nullptr;
@@ -302,6 +309,10 @@ void LinkedList::reverseSubList(unsigned int start, unsigned int end) {
 		_head = prev;
 	}
 }
+
+
+//TODO reverse() const
+//TODO getReverseList()
 
 
 size_t LinkedList::size() const {
