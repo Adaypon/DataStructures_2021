@@ -80,7 +80,7 @@ public:
 	LinkedList reverse() const;			// полчение нового списка (для константных объектов)
 	LinkedList getReverseList() const;	// чтобы неконстантный объект тоже мог возвращать новый развернутый список
 
-	void reverseSubList(unsigned int start, unsigned int end);
+	void reverseSubList(const unsigned int start, const unsigned int end);
 
 	size_t size() const;
 private:

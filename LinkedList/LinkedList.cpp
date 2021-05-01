@@ -254,7 +254,7 @@ void LinkedList::removeBack() {
 //TODO findIndex
 //TODO findNode
 
-
+/*
 void LinkedList::reverse() {
 	Node* cur = _head;
 	Node* prev = nullptr;
@@ -268,20 +268,17 @@ void LinkedList::reverse() {
 	}
 	_head = prev; // set new movement
 }
+*/
 
-/*
 void LinkedList::reverse() {
 	this->reverseSubList(0, size()-1);
 }
-*/
-void LinkedList::reverseSubList(unsigned int start, unsigned int end) {
+
+void LinkedList::reverseSubList(const unsigned int start, const unsigned int end) {
 	if (start >= end) {
 		return;
 	}
-
-	std::cout << "tmp\n";
-
-	
+		
 	Node* cur = _head;
 	Node* prev = nullptr;
 	Node* next = nullptr;
@@ -306,7 +303,7 @@ void LinkedList::reverseSubList(unsigned int start, unsigned int end) {
 		prev->_next = endNode;
 	}
 	else {
-		_head = prev;
+		_head = endNode;
 	}
 }
 
