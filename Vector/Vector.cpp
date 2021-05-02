@@ -339,6 +339,10 @@ void MyVector::insert(const size_t idx, const ValueType& value) {
 	_data = tmpVector;
 }
 
+void MyVector::insert(MyVector::VectorIterator it, const ValueType& value) {
+	this->insert(it.getIndex(), value);
+}
+
 void MyVector::clear() {
 	//this->erase(0, size());
 	delete[] _data;
