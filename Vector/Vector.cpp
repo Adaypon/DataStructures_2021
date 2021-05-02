@@ -274,8 +274,17 @@ const ValueType& MyVector::operator[](const size_t i) const {
 }
 
 
-void MyVector::reserve(const size_t capacity) {
-	_capacity = capacity;
+void MyVector::reserve(const size_t newCapacity) {
+	if (newCapacity <= _capacity) {
+		return;
+	}
+	_capacity = newCapacity;
+	ValueType* tmpVector = new ValueType[capacity()];
+	for (size_t i = 0; i < size(); ++i) {
+		tmpVector[i] = _data[i];
+	}
+	delete[] _data;
+	_data = tmpVector;
 }
 
 // TODO try to fix (works unstable, still idk why)
