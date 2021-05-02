@@ -76,7 +76,7 @@ public:
 	// вставка элемента по индексу, сначала ищем, куда вставлять (О(n)), потом вставляем (O(1))
 	void insert(const size_t pos, const ValueType& value);
 	// вставка элемента после узла, (O(1))
-	void insertAfterNode(Node* node, const ValueType& value);
+	void insertAfterNode(ListIterator it, const ValueType& value);
 	// вставка в конец (О(n))
 	void pushBack(const ValueType& value);
 	// вставка в начало (О(1))
@@ -97,7 +97,7 @@ public:
 
 	// удаление
 	void remove(const size_t pos);
-	void removeNextNode(Node* node);
+	void removeNextNode(ListIterator it);
 	void removeFront();
 	void removeBack();
 	void clear();
