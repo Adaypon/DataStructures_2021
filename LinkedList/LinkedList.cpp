@@ -142,6 +142,14 @@ LinkedList::~LinkedList() {
 };
 
 
+LinkedList::ListIterator LinkedList::begin() const {
+	return LinkedList::ListIterator(_head, 0);
+}
+
+LinkedList::ListIterator LinkedList::end() const {
+	return LinkedList::ListIterator(nullptr, size());
+}
+
 const ValueType& LinkedList::at(const size_t pos) const {
 	if (pos >= size()) {
 		throw std::out_of_range("Called at at(): pos >= size");

@@ -62,6 +62,9 @@ public:
 	~LinkedList();
 	////
 
+	ListIterator begin() const;
+    ListIterator end() const;
+
 	// доступ к значению элемента по индексу
 	const ValueType& at(const size_t pos) const;
 	ValueType& at(const size_t pos);
