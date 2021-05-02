@@ -23,6 +23,33 @@ class LinkedList
 		Node* _next;
 	};
 
+	class ListIterator {
+	public:
+		using iterator_category = std::forward_iterator_tag;
+		using difference_type   = std::ptrdiff_t;
+		using value_type        = ValueType;
+		using pointer           = ValueType*;
+		using reference         = ValueType&;
+
+		ListIterator(Node* ptr, size_t idx);
+        
+        ListIterator(const ListIterator& copy);
+        ListIterator& operator=(const ListIterator& copy);
+
+        reference operator*();
+        pointer operator->();
+        ListIterator& operator++();
+        ListIterator operator++(int _);
+        bool operator==(const ListIterator& other);
+        bool operator!=(const ListIterator& other);
+        difference_type operator-(const ListIterator& other);
+
+        size_t getIndex() const;
+	private:
+		Node* _ptr;
+		size_t _index;
+	};
+
 public:
 	////
 	LinkedList();
@@ -71,7 +98,7 @@ public:
 	void removeFront();
 	void removeBack();
 	void clear();
-	
+
 	// поиск, О(n)
 	long long int findIndex(const ValueType& value) const;
 	Node* findNode(const ValueType& value) const;
