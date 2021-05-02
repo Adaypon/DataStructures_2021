@@ -8,7 +8,7 @@ const size_t MyVector::CAPACITY_INIT = 20; // для инициализации 
 
 // VectorIterator
 
-MyVector::VectorIterator::VectorIterator(ValueType *ptr, size_t idx) :
+MyVector::VectorIterator::VectorIterator(ValueType* ptr, size_t idx) :
 	_ptr(ptr),
 	_index(idx)
 {
@@ -67,14 +67,16 @@ size_t MyVector::VectorIterator::getIndex() const {
 
 // ConstVectorIterator
 
-MyVector::ConstVectorIterator::ConstVectorIterator(ValueType *ptr) :
-	_ptr(ptr)
+MyVector::ConstVectorIterator::ConstVectorIterator(const ValueType* ptr, size_t idx) :
+	_ptr(ptr),
+	_index(idx)
 {
 
 }
 
 MyVector::ConstVectorIterator::ConstVectorIterator(const MyVector::ConstVectorIterator& copy) :
-	_ptr(copy._ptr)
+	_ptr(copy._ptr),
+	_index(copy._index)
 {
 
 }
@@ -82,6 +84,7 @@ MyVector::ConstVectorIterator::ConstVectorIterator(const MyVector::ConstVectorIt
 MyVector::ConstVectorIterator& MyVector::ConstVectorIterator::operator=(const MyVector::ConstVectorIterator& copy) {
 	if (this != &copy) {
 		_ptr = copy._ptr;
+		_index = copy._index;
 	}
 	return *this;
 }
@@ -96,6 +99,7 @@ const ValueType* MyVector::ConstVectorIterator::operator->() const {
 
 MyVector::ConstVectorIterator& MyVector::ConstVectorIterator::operator++() {
 	++_ptr;
+	++_index;
 	return *this;
 }
 
@@ -244,7 +248,7 @@ MyVector::VectorIterator MyVector::begin() {
 }
 
 MyVector::ConstVectorIterator MyVector::begin() const {
-	return MyVector::ConstVectorIterator(&_data[0]);
+	return MyVector::ConstVectorIterator(&_data[0], 0);
 }
 
 MyVector::VectorIterator MyVector::end() {
@@ -252,7 +256,7 @@ MyVector::VectorIterator MyVector::end() {
 }
 
 MyVector::ConstVectorIterator MyVector::end() const {
-	return MyVector::ConstVectorIterator(&_data[size()]);
+	return MyVector::ConstVectorIterator(&_data[size()], size());
 }
 
 ValueType& MyVector::at(const size_t idx) {

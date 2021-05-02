@@ -25,7 +25,7 @@ public:
         using pointer           = ValueType*;
         using reference         = ValueType&;
 
-        VectorIterator(ValueType *ptr, size_t idx);
+        VectorIterator(pointer ptr, size_t idx);
         
         VectorIterator(const VectorIterator& copy);
         VectorIterator& operator=(const VectorIterator& copy);
@@ -52,7 +52,7 @@ public:
         using pointer           = const ValueType*;
         using reference         = const ValueType&;
 
-        ConstVectorIterator(ValueType *ptr);
+        ConstVectorIterator(pointer ptr, size_t idx);
         
         ConstVectorIterator(const ConstVectorIterator& copy);
         ConstVectorIterator& operator=(const ConstVectorIterator& copy);
