@@ -67,6 +67,9 @@ LinkedList::LinkedList(LinkedList&& moveList) noexcept :
 
 LinkedList& LinkedList::operator=(LinkedList&& moveList) noexcept {
 	if (this != &moveList) {
+		if (_head) {
+			clear();
+		}
 		std::swap(_head, moveList._head);
 		std::swap(_size, moveList._size);
 	}

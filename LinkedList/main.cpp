@@ -16,11 +16,9 @@ int main() {
 	//std::cout << list.size() << std::endl;
 	//list.print();
 	LinkedList l2;
-	l2.pushBack(3);
 
 	try {
-		l2 = list;
-		l2.removeBack();
+		l2 = std::move(list);
 		std::cout << "LIST 2\n";
 		std::cout << l2.size() << std::endl;
 		l2.print();
@@ -29,6 +27,6 @@ int main() {
 	catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
-
+	list.print();
 	return 0;	
 }
