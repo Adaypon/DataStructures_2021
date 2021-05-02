@@ -34,11 +34,24 @@ LinkedList::LinkedList(const LinkedList& copyList) {
 }
 
 LinkedList& LinkedList::operator=(const LinkedList& copyList) {
-	//TODO delete old list before ?
 	if (this != &copyList) {
-		LinkedList tmpList(copyList);
-		_head = tmpList._head;
-		_size = tmpList._size;
+		if (_head) {
+			clear();
+		}
+		_size = copyList._size;
+		if (!copyList._head) {
+			_head == nullptr;
+		}
+		else {
+			_head = new Node(copyList._head->_value);
+			Node* cur = _head;
+			Node* curCopy = copyList._head;
+			while (curCopy->_next) {
+				cur->_next = new Node(curCopy->_next->_value);
+				curCopy = curCopy->_next;
+				cur = cur->_next;
+			}
+		}
 	}
 	return *this;
 }
