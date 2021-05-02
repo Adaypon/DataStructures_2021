@@ -62,9 +62,7 @@ LinkedList& LinkedList::operator=(LinkedList&& moveList) noexcept {
 
 
 LinkedList::~LinkedList() {
-	while (_head) {
-		this->removeFront();
-	}
+	clear();
 };
 
 
@@ -248,6 +246,12 @@ void LinkedList::removeFront() {
 
 void LinkedList::removeBack() {
 	this->remove(size()-1);
+}
+
+void LinkedList::clear() {
+	while (_head) {
+		this->removeFront();
+	}
 }
 
 

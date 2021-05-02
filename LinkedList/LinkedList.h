@@ -70,6 +70,7 @@ public:
 	void removeNextNode(Node* node);
 	void removeFront();
 	void removeBack();
+	void clear();
 	
 	// поиск, О(n)
 	long long int findIndex(const ValueType& value) const;
