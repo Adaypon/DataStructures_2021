@@ -8,6 +8,66 @@ LinkedList::Node::Node(const ValueType& value, Node* next) :
 
 }
 
+/// Iterators section
+
+LinkedList::ListIterator::ListIterator(Node* ptr, size_t idx) :
+	_ptr(ptr),
+	_index(idx)
+{
+
+}
+
+LinkedList::ListIterator::ListIterator(const LinkedList::ListIterator& copy) :
+	_ptr(copy._ptr),
+	_index(copy._index)
+{
+
+}
+
+LinkedList::ListIterator& LinkedList::ListIterator::operator=(const LinkedList::ListIterator& copy) {
+	if (this != &copy) {
+		_ptr = copy._ptr;
+		_index = copy._index;
+	}
+	return *this;
+}
+
+ValueType& LinkedList::ListIterator::operator*() {
+	return _ptr->_value;
+}
+ValueType* LinkedList::ListIterator::operator->() {
+	return &(_ptr->_value);
+}
+
+LinkedList::ListIterator& LinkedList::ListIterator::operator++() {
+	++_ptr;
+	++_index;
+	return *this;
+}
+
+LinkedList::ListIterator LinkedList::ListIterator::operator++(int _) {
+	auto tmp = *this;
+	++(*this);
+	return tmp;
+}
+
+bool LinkedList::ListIterator::operator==(const LinkedList::ListIterator& other) {
+	return _ptr == other._ptr;
+}
+
+bool LinkedList::ListIterator::operator!=(const LinkedList::ListIterator& other) {
+	return !(*this == other);
+}	
+
+std::ptrdiff_t LinkedList::ListIterator::operator-(const LinkedList::ListIterator& other) {
+	return _ptr - other._ptr;
+}
+
+size_t LinkedList::ListIterator::getIndex() const {
+	return _index;
+}
+
+///
 
 LinkedList::LinkedList() :
 	_head(nullptr),
