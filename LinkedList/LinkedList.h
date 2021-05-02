@@ -71,7 +71,7 @@ public:
 	const ValueType& operator[](const size_t pos) const;
 	ValueType& operator[](const size_t pos);
 	// доступ к узлу по индексу
-	//LinkedList::Node* getNode(const size_t pos) const;
+	ListIterator getNode(const size_t pos) const;
 	
 	// вставка элемента по индексу, сначала ищем, куда вставлять (О(n)), потом вставляем (O(1))
 	void insert(const size_t pos, const ValueType& value);
