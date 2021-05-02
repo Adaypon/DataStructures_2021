@@ -30,8 +30,8 @@ public:
         VectorIterator(const VectorIterator& copy);
         VectorIterator& operator=(const VectorIterator& copy);
 
-        ValueType& operator*();
-        ValueType* operator->();
+        reference operator*();
+        pointer operator->();
         VectorIterator& operator++();
         VectorIterator operator++(int _);
         bool operator==(const VectorIterator& other);
@@ -40,7 +40,7 @@ public:
 
         size_t getIndex() const;
     private:
-        ValueType* _ptr;
+        pointer _ptr;
         size_t _index;
     };
 
@@ -48,24 +48,27 @@ public:
     public:
         using iterator_category = std::forward_iterator_tag;
         using difference_type   = std::ptrdiff_t;
-        using value_type        = ValueType;
-        using pointer           = ValueType*;
-        using reference         = ValueType&;
+        using value_type        = const ValueType;
+        using pointer           = const ValueType*;
+        using reference         = const ValueType&;
 
         ConstVectorIterator(ValueType *ptr);
         
         ConstVectorIterator(const ConstVectorIterator& copy);
         ConstVectorIterator& operator=(const ConstVectorIterator& copy);
 
-        ValueType& operator*();
-        ValueType* operator->();
+        reference operator*() const;
+        pointer operator->() const;
         ConstVectorIterator& operator++();
         ConstVectorIterator operator++(int _);
         bool operator==(const ConstVectorIterator& other);
         bool operator!=(const ConstVectorIterator& other);
         std::ptrdiff_t operator-(const ConstVectorIterator& other);
+
+        size_t getIndex() const;
     private:
-        ValueType* _ptr;
+        pointer _ptr;
+        size_t _index;
     };
 
     // заполнить вектор значениями ValueType()

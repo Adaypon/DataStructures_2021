@@ -44,7 +44,7 @@ MyVector::VectorIterator& MyVector::VectorIterator::operator++() {
 }
 
 MyVector::VectorIterator MyVector::VectorIterator::operator++(int _) {
-	VectorIterator tmp = *this;
+	auto tmp = *this;
 	++(*this);
 	return tmp;
 }
@@ -86,11 +86,11 @@ MyVector::ConstVectorIterator& MyVector::ConstVectorIterator::operator=(const My
 	return *this;
 }
 
-ValueType& MyVector::ConstVectorIterator::operator*() {
+const ValueType& MyVector::ConstVectorIterator::operator*() const {
 	return *(_ptr);
 }
 
-ValueType* MyVector::ConstVectorIterator::operator->() {
+const ValueType* MyVector::ConstVectorIterator::operator->() const {
 	return _ptr;
 }
 
@@ -100,7 +100,7 @@ MyVector::ConstVectorIterator& MyVector::ConstVectorIterator::operator++() {
 }
 
 MyVector::ConstVectorIterator MyVector::ConstVectorIterator::operator++(int _) {
-	ConstVectorIterator tmp = *this;
+	auto tmp = *this;
 	++(*this);
 	return tmp;
 }
@@ -115,6 +115,10 @@ bool MyVector::ConstVectorIterator::operator!=(const MyVector::ConstVectorIterat
 
 std::ptrdiff_t MyVector::ConstVectorIterator::operator-(const MyVector::ConstVectorIterator& other) {
 	return _ptr - other._ptr;
+}
+
+size_t MyVector::ConstVectorIterator::getIndex() const {
+	return _index;
 }
 
 ///
