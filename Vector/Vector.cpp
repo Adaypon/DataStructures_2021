@@ -414,15 +414,19 @@ float MyVector::loadFactor() const {
 bool MyVector::isLoaded() const {
 	return (loadFactor() >= MAX_LOAD);
 }
-/*
-size_t MyVector::find(const ValueType& value) const {
-	size_t res = -1;
-	for (size_t i = 0; i < size(); ++i) {
-		if (this->at(i) == value) {
-			res = i;
-			break;
+
+MyVector::ConstVectorIterator MyVector::find(const ValueType& value, bool isBegin) const {
+	auto res = begin();
+	for (auto it = begin(); it != end(); ++it) {
+		if (*it == value) {
+			res = it;
+			if (isBegin) {
+				break;
+			}
 		}
+	}
+	if (*res != value) {
+		return end();
 	}
 	return res;
 }
-*/
