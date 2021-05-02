@@ -36,7 +36,7 @@ public:
         VectorIterator operator++(int _);
         bool operator==(const VectorIterator& other);
         bool operator!=(const VectorIterator& other);
-        std::ptrdiff_t operator-(const VectorIterator& other);
+        difference_type operator-(const VectorIterator& other);
 
         size_t getIndex() const;
     private:
@@ -63,7 +63,7 @@ public:
         ConstVectorIterator operator++(int _);
         bool operator==(const ConstVectorIterator& other);
         bool operator!=(const ConstVectorIterator& other);
-        std::ptrdiff_t operator-(const ConstVectorIterator& other);
+        difference_type operator-(const ConstVectorIterator& other);
 
         size_t getIndex() const;
     private:
