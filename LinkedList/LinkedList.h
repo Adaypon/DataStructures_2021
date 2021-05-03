@@ -16,9 +16,6 @@ class LinkedList
 		Node(const ValueType& value, Node* next = nullptr);
 		~Node() = default;
 
-		void insertNext(const ValueType& value);
-		void removeNext();
-
 		ValueType _value;
 		Node* _next;
 	};
