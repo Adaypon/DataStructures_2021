@@ -339,6 +339,10 @@ void LinkedList::remove(const size_t pos) {
 	--_size;
 }
 
+void LinkedList::removeNextNode(LinkedList::ListIterator it) {
+	remove(it.getIndex() + 1);
+}
+
 void LinkedList::removeFront() {
 	this->remove(0);
 }
