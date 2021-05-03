@@ -40,7 +40,7 @@ ValueType* LinkedList::ListIterator::operator->() {
 }
 
 LinkedList::ListIterator& LinkedList::ListIterator::operator++() {
-	++_ptr;
+	_ptr = _ptr->_next;
 	++_index;
 	return *this;
 }
