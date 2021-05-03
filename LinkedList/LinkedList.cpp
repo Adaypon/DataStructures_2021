@@ -190,6 +190,19 @@ ValueType& LinkedList::operator[](const size_t pos) {
 	return at(pos);
 }
 
+LinkedList::ListIterator LinkedList::getNode(const size_t pos) const {
+	if (pos >= size()) {
+		throw std::out_of_range("Called at getNode(): pos >= size");
+	}
+	auto it = begin();
+	for (; it != end(); ++it) {
+		if (it.getIndex() == pos) {
+			break;
+		}
+	}
+	return it;
+}
+
 
 void LinkedList::insert(const size_t pos, const ValueType& value) {
 	if (pos > size()) {
