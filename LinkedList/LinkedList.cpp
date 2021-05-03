@@ -248,7 +248,9 @@ void LinkedList::pushFront(const ValueType& value) {
 }
 
 
-//TODO insertAfterNode() ????
+void LinkedList::insertAfterNode(LinkedList::ListIterator it, const ValueType& value) {
+	insert(it.getIndex() + 1, value);
+}
 
 
 void LinkedList::print() const {
