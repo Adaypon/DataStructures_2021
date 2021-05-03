@@ -67,6 +67,10 @@ size_t LinkedList::ListIterator::getIndex() const {
 	return _index;
 }
 
+LinkedList::Node* LinkedList::ListIterator::getPtr() const {
+	return _ptr;
+}
+
 ///
 
 LinkedList::LinkedList() :

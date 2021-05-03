@@ -42,6 +42,7 @@ class LinkedList
         difference_type operator-(const ListIterator& other);
 
         size_t getIndex() const;
+		Node* getPtr() const;
 	private:
 		Node* _ptr;
 		size_t _index;
