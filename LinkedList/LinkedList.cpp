@@ -194,7 +194,7 @@ ValueType& LinkedList::operator[](const size_t pos) {
 	return at(pos);
 }
 
-LinkedList::ListIterator LinkedList::getNode(const size_t pos) const {
+LinkedList::Node* LinkedList::getNode(const size_t pos) const {
 	if (pos >= size()) {
 		throw std::out_of_range("Called at getNode(): pos >= size");
 	}
@@ -204,7 +204,7 @@ LinkedList::ListIterator LinkedList::getNode(const size_t pos) const {
 			break;
 		}
 	}
-	return it;
+	return it.getPtr();
 }
 
 
