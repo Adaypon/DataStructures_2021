@@ -362,8 +362,23 @@ void LinkedList::clear() {
 }
 
 
-//TODO findIndex
-//TODO findNode
+size_t LinkedList::findIndex(const ValueType& value) const {
+	for (auto it = begin(); it != end(); ++it) {
+		if (*it == value) {
+			return it.getIndex();
+		}
+	}
+	return -1;
+}
+
+LinkedList::Node* LinkedList::findNode(const ValueType& value) const {
+	for (auto it = begin(); it != end(); ++it) {
+		if (*it == value) {
+			return it.getPtr();
+		}
+	}
+	return nullptr;
+}
 
 
 void LinkedList::reverse() {

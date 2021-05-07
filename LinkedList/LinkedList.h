@@ -101,7 +101,7 @@ public:
 	void clear();
 
 	// поиск, О(n)
-	long long int findIndex(const ValueType& value) const;
+	size_t findIndex(const ValueType& value) const;
 	Node* findNode(const ValueType& value) const;
 
 	// разворот списка
