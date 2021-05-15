@@ -356,13 +356,41 @@ void MyVector::insert(const size_t idx, const ValueType& value) {
 	_data = tmpVector;
 }
 
-// TODO void insert(const size_t idx, const MyVector& value)
+void MyVector::insert(const size_t idx, const MyVector& value) {
+	if (idx > size()) {
+		throw std::out_of_range("Called at insert(): idx > size");
+	}
+	size_t i = 0, j = 0;
+	const size_t insertVectorSize = value.size();
+
+	_size += insertVectorSize;
+	while (isLoaded()) {
+		reallocVector();
+	}
+
+	ValueType* tmpVector = new ValueType[_capacity];
+
+	for (; i < idx; ++i) {
+		tmpVector[i] = _data[i];
+	}
+	for (; j < insertVectorSize; ++i, ++j) {
+		tmpVector[i] = value[j];
+	}
+	for (j = idx; i < size(); ++i, ++j) {
+		tmpVector[i] = _data[j];
+	}
+
+	delete[] _data;
+	_data = tmpVector;
+}
 
 void MyVector::insert(MyVector::VectorIterator it, const ValueType& value) {
 	this->insert(it.getIndex(), value);
 }
 
-// TODO void insert(VectorIterator it, const MyVector& value)
+void MyVector::insert(MyVector::VectorIterator it, const MyVector& value) {
+	this->insert(it.getIndex(), value);
+}
 
 void MyVector::clear() {
 	//this->erase(0, size());
