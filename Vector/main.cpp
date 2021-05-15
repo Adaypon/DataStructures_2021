@@ -1,18 +1,25 @@
-#include "Vector.h"
+#include "MyVector.h"
 
 int main() {
-	Vector a;
-	for (size_t i = 1; i <= 10; ++i) {
-		a.pushBack(i);
-	}
-	a.pushBack(9);
-
-	for (size_t i = 0; i < a.size(); ++i) {
-		std::cout << a[i] << ' ';
+	MyVector a;
+	for (int i = 0; i < a.size(); ++i) {
+		std::cout << i << ": "<< a[i] << std::endl;
 	}
 	std::cout << std::endl;
 
-	std::cout << a.find(9) << std::endl;
+	std::cout << "size = " << a.size() << " capacity = " << a.capacity() << std::endl;
+	a.reserve(30);
+	for (int i = 0; i < a.size(); ++i) {
+		std::cout << i << ": "<< a[i] << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << "size = " << a.size() << " capacity = " << a.capacity() << std::endl;
+	a.resize(50);
+	std::cout << "size = " << a.size() << " capacity = " << a.capacity() << std::endl;
+	for (int i = 0; i < a.size(); ++i) {
+		std::cout << i << ": "<< a[i] << std::endl;
+	}
+	std::cout << std::endl;
 
-	return 0;
+	return 0;	
 }
