@@ -323,7 +323,7 @@ public:
     void erase(const size_t pos) { this->erase(pos, 1); }
 
 	// удалить len элементов начиная с i
-    void erase(const size_t pos, const size_t len) {            
+    void erase(const size_t pos, size_t len) {            
 		if (pos >= size()) {
 			throw std::out_of_range("Called at erase(): pos >= size");
 		}
