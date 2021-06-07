@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <cstddef>
+#include <exception>
 
 template<typename T>
 class LinkedList
