@@ -158,7 +158,7 @@ const Value& BST<Key, Value>::find(Node* node, const Key& key) const {
 			node = node->_right;
 		}
 	}
-	throw std::invalid_argument("Incorrect value");
+	throw std::invalid_argument("Incorrect key");
 }
 
 template<typename Key, typename Value>
