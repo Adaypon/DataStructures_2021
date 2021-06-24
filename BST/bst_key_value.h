@@ -53,9 +53,6 @@ public:
 	void traverse(Node* node);
 
 	bool isEmpty() const;
-	
-	void print2DUtil(Node* node, int space);
-	void print2D();
 
 private:
     Node* _root;
