@@ -86,14 +86,14 @@ BST<Key, Value>::BST() : _root(nullptr)
 }
 
 template<typename Key, typename Value>
-BST<Key, Value>::BST(const BST<Key, Value>& copyTree) :
+BST<Key, Value>::BST(const BST& copyTree) :
 	_root(BSTDeepCopy(copyTree._root))
 {
 
 }
 
 template<typename Key, typename Value>
-BST<Key, Value>& BST<Key, Value>::operator=(const BST<Key, Value>& copyTree) {
+BST<Key, Value>& BST<Key, Value>::operator=(const BST& copyTree) {
 	if (this != &copyTree) {
 		if (!isEmpty()) {
 			clear();
@@ -115,13 +115,13 @@ typename BST<Key, Value>::Node* BST<Key, Value>::BSTDeepCopy(const Node* node) c
 }
 
 template<typename Key, typename Value>
-BST<Key, Value>::BST(BST<Key, Value>&& moveTree) noexcept : _root(nullptr)
+BST<Key, Value>::BST(BST&& moveTree) noexcept : _root(nullptr)
 {
 	std::swap(_root, moveTree._root);
 }
 
 template<typename Key, typename Value>
-BST<Key, Value>& BST<Key, Value>::operator=(BST<Key, Value>&& moveTree) noexcept {
+BST<Key, Value>& BST<Key, Value>::operator=(BST&& moveTree) noexcept {
 	if (this != &moveTree) {
 		if (!isEmpty()) {
 			clear();
