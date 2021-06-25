@@ -22,10 +22,11 @@ class BST
 public:
 	////
 	BST();
-	/*
+	
 	BST(const BST& copyTree);
 	BST& operator=(const BST& copyTree);
-	*/
+	Node* BSTDeepCopy(const Node* node) const; // recursive function for copy semantics
+	
 	BST(BST&& moveTree) noexcept;
 	BST& operator=(BST&& moveTree) noexcept;
 	
@@ -85,6 +86,35 @@ BST<Key, Value>::BST() : _root(nullptr)
 }
 
 template<typename Key, typename Value>
+BST<Key, Value>::BST(const BST<Key, Value>& copyTree) :
+	_root(BSTDeepCopy(copyTree._root))
+{
+
+}
+
+template<typename Key, typename Value>
+BST<Key, Value>& BST<Key, Value>::operator=(const BST<Key, Value>& copyTree) {
+	if (this != &copyTree) {
+		if (!isEmpty()) {
+			clear();
+		}
+		_root = BSTDeepCopy(copyTree._root);
+	}
+	return *this;
+}
+
+template<typename Key, typename Value>
+typename BST<Key, Value>::Node* BST<Key, Value>::BSTDeepCopy(const Node* node) const {
+	if (!node) {
+		return nullptr;
+	}
+	Node* copyNode = new Node(node->_key, node->_value);
+	copyNode->_left = BSTDeepCopy(node->_left);
+	copyNode->_right = BSTDeepCopy(node->_right);
+	return copyNode;
+}
+
+template<typename Key, typename Value>
 BST<Key, Value>::BST(BST<Key, Value>&& moveTree) noexcept : _root(nullptr)
 {
 	std::swap(_root, moveTree._root);
@@ -100,7 +130,6 @@ BST<Key, Value>& BST<Key, Value>::operator=(BST<Key, Value>&& moveTree) noexcept
 	std::swap(_root, moveTree._root);
 	return *this;
 }
-
 
 template<typename Key, typename Value>
 BST<Key, Value>::~BST()
