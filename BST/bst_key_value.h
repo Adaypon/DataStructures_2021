@@ -220,6 +220,12 @@ template<typename Key, typename Value>
 void BST<Key, Value>::_deleteNode(Node* node, Node* parent) {
 	// case 1: нет потомков
 	if (node->isLeafNode()) {
+		std::cout << "\t case 1\n";
+		if (!parent) {
+			// It's a tr-.. root!!
+			clear();
+			return;
+		}
 		if (parent->_left == node) {
 			parent->_left = nullptr;
 		}
@@ -253,6 +259,7 @@ void BST<Key, Value>::_deleteNode(Node* node, Node* parent) {
 
 	// case 3: два потомка
 	if (!node->_right->_left) {
+		node->_key = node->_right->_key;
 		node->_value = node->_right->_value;
 		Node* tmpNode = node->_right->_right;
 		delete node->_right;
